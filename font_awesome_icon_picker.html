@@ -1,0 +1,70 @@
+<head>
+    <title> Font Awesome Icon Picker </title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Font Awesome Icon Picker">
+    <meta name="author" content="Riyadh Ahmed">
+	<meta name="keyword" content="bootstrap,font awesome,icon,iconpicker,fontawesome,fa, fa icon">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">	
+	<link rel="stylesheet" href="css/fontawesome-iconpicker.min.css">
+	
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/fontawesome-iconpicker.min.js"></script>
+
+	
+	<!--<script type="text/javascript" src="js/jquery-1.11.1.js"></script>-->
+
+</head>	
+<div class="container jumbotron">
+    <div class="row">
+	<h2>By Riyadh Ahmed</h2>
+        <div class='col-sm-6'>
+		<label>Choose an Icon</label>
+            <div class = " col-md-8 input-group">
+				<span class = "input-group-addon"><i class = "fa fa-2x"></i></span>
+				<input type = "text" class = "form-control icp icp-glyphs" id = "ServiceIcon" name = "ServiceIcon"
+					   value = "" placeholder = "Click here to Choose an Icon" readonly>
+			</div>
+        </div>        
+    </div>
+</div>
+<script>
+    $(function () {
+        $('.icp-glyphs').on('click', function () {
+            $('.icp-glyphs').iconpicker({
+                title: 'Font Awesome Icons',
+                icons: $.merge([],
+//                         ['glyphicon-home', 'glyphicon-repeat', 'glyphicon-search',
+//                             'glyphicon-arrow-left', 'glyphicon-arrow-right', 'glyphicon-star'],
+                    $.iconpicker.defaultOptions.icons),
+                fullClassFormatter: function (val) {
+                    if (val.match(/^fa-/)) {
+                        return 'fa ' + val;
+                    } else {
+                        return 'glyphicon ' + val;
+                    }
+                }
+            });
+
+        }).trigger('click');
+
+
+        // Events sample:
+        // This event is only triggered when the actual input value is changed
+        // by user interaction
+        $('.icp').on('iconpickerSelected', function (e) {
+            $('.lead .picker-target').get(0).className = 'picker-target fa-3x ' +
+            e.iconpickerInstance.options.iconBaseClass + ' ' +
+            e.iconpickerInstance.options.fullClassFormatter(e.iconpickerValue);
+        });
+    });
+</script>
+	
